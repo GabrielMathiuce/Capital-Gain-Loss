@@ -1,0 +1,5 @@
+SELECT
+    stock_name,
+    (SELECT SUM(price) FROM Stocks s WHERE s.operation = 'Sell' AND s.stock_name = s3.stock_name) - (SELECT SUM(price) FROM Stocks s2 WHERE s2.operation = 'Buy' AND s2.stock_name = s3.stock_name) AS capital_gain_loss
+FROM Stocks s3
+GROUP BY stock_name;
